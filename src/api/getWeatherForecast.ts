@@ -2,12 +2,12 @@ import { getCurrentDate } from '../utils/getCurrentDate';
 import { getDateSevenDaysFromNow } from '../utils/getDateSevenDaysFromNow';
 import { apiCall } from './apiCallHandler';
 
-export const getWeahterForecast = async (apiKey: string, cityName: string): Promise<any> => {
+export const getWeahterForecast = async (apiKey: string, lon: string, lat: string): Promise<any> => {
   //
-  return apiCall('GET', 'https://meteostat.p.rapidapi.com/point/daily', {
+  return apiCall('GET', 'https://meteostat.p.rapidapi.com/point/hourly', {
     params: {
-      lat: '43.6667',
-      lon: '-79.4',
+      lat,
+      lon,
       start: `${getCurrentDate()}`,
       end: `${getDateSevenDaysFromNow()}`,
     },

@@ -6,7 +6,7 @@ interface ForwardGeocodingPromise {
   lat: string;
 }
 
-export const forwardGeocoding = async (apiKey: string, cityName: string): Promise<ForwardGeocodingPromise> => {
+export const forwardGeocoding = async (apiKey: string, cityName: string): Promise<any> => {
   //
   return apiCall('GET', 'https://forward-reverse-geocoding.p.rapidapi.com/v1/forward', {
     params: {
