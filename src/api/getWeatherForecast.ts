@@ -2,18 +2,12 @@ import { getCurrentDate } from '../utils/getCurrentDate';
 import { getDateSevenDaysFromNow } from '../utils/getDateSevenDaysFromNow';
 import { apiCall } from './apiCallHandler';
 
-export const getWeahterForecast = async (apiKey: string, lon: string, lat: string): Promise<any> => {
+export const getWeahterForecast = async (apiKey: string, cityName: string): Promise<any> => {
   //
-  return apiCall('GET', 'https://meteostat.p.rapidapi.com/point/hourly', {
+  return apiCall('GET', 'https://api.weatherbit.io/v2.0/forecast/daily', {
     params: {
-      lat,
-      lon,
-      start: `${getCurrentDate()}`,
-      end: `${getDateSevenDaysFromNow()}`,
-    },
-    headers: {
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'meteostat.p.rapidapi.com',
+      key: apiKey,
+      city: cityName,
     },
   });
 };
