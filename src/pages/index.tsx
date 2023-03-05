@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     return {
         props: {
-            data,
+            data: dataMock.data,
             weatherIcons
         }
     };

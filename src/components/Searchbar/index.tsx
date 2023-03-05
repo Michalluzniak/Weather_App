@@ -1,4 +1,4 @@
-import { AiOutlineSearch } from "react-icons/ai";
+import { BiSearch } from "react-icons/bi";
 
 const Searchbar = () => {
     return (
@@ -9,7 +9,7 @@ const Searchbar = () => {
                 placeholder="Search for city"
             />
             <button className="bg-black/70 h-10 w-10 rounded-full grid place-items-center ">
-                <AiOutlineSearch className="text-slate-200" />
+                <BiSearch className="text-slate-200 text-xl" />
             </button>
         </div>
     );
