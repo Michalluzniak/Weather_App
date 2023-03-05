@@ -8,21 +8,19 @@ export const OtherDayForecast = ({ data, weatherIcons }: any) => {
     const temperature = temperatureConverter(data.temp, "Celsius");
 
     const dayName = getDayName(data.datetime, "en-US");
-    const icons = weatherIcons;
-    // console.log(icons[data.weather.icon]);
 
     return (
-        <div className="flex flex-col justify-between items-center border-r border-slate-200 h-full bg-red-800 grow">
-            <p className="py-3 text-slate-200">{dayName}</p>
+        <div className="flex flex-col justify-between items-center border-l border-slate-200/70 h-full grow">
+            <p className="py-3 text-slate-200 text-xl">{dayName}</p>
             <Image
-                priority
-                src={icons[data.weather.icon]}
-                height={128}
-                width={128}
+                src={weatherIcons[data.weather.icon]}
+                height={148}
+                width={148}
                 alt="Follow us on Twitter"
             />
+            <p className="py-3  text-slate-200 ">{data.weather.description}</p>
             <i className="wi wi-day-light-wind"></i>
-            <p className="py-3 text-xl text-slate-200">{data.temp} °C</p>
+            <p className="py-3  text-slate-200 text-2xl">{data.temp} °C</p>
         </div>
     );
 };
