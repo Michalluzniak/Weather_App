@@ -7,7 +7,7 @@ const WeatherTemperatureBar = ({ data, className }: any) => {
     return (
         <div className={`flex flex-row ${className}`}>
             <TodayForecast data={data}></TodayForecast>
-            {data.data.map((weatherData: any, index: number) => {
+            {data.data.data.map((weatherData: any, index: number) => {
                 return (
                     index !== 0 && (
                         <OtherDayForecast

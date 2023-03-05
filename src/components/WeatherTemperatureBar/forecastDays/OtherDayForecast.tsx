@@ -13,10 +13,9 @@ export const OtherDayForecast = ({ data, weatherIcons }: any) => {
 
     return (
         <div className="flex flex-col justify-between items-center border-r border-slate-200 h-full bg-red-800 grow">
-            <p className="py-3 text-slate-200">{`lal`}</p>
+            <p className="py-3 text-slate-200">{dayName}</p>
             <Image
                 priority
-                // src={`svg/${data.weather.icon}.svg`}
                 src={icons[data.weather.icon]}
                 height={128}
                 width={128}
