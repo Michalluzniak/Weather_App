@@ -10,7 +10,12 @@ export const OtherDayForecast = ({ data, weatherIcons }: any) => {
     const dayName = getDayName(data.datetime, "en-US");
 
     return (
-        <div className="flex flex-col justify-between items-center border-l border-white/30 h-fuitell grow">
+        <div
+            className="flex flex-col justify-between items-center border-l border-white/30 h-fuitell"
+            style={{
+                width: "calc(75% / 6)"
+            }}
+        >
             <p className="py-3 text-slate-200 text-xl">{dayName}</p>
             <Image
                 src={weatherIcons[data.weather.icon]}
