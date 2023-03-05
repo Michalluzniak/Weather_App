@@ -23,9 +23,9 @@ export const OtherDayForecast = ({ data, weatherIcons }: any) => {
                 width={148}
                 alt="Follow us on Twitter"
             />
-            <p className="py-3  text-slate-200 ">{data.weather.description}</p>
+            <p className="py-3">{data.weather.description}</p>
             <i className="wi wi-day-light-wind"></i>
-            <p className="py-3  text-slate-200 text-2xl">{data.temp} °C</p>
+            <p className="py-3 text-2xl">{data.temp} °C</p>
         </div>
     );
 };

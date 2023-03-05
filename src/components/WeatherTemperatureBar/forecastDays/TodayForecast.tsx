@@ -4,9 +4,7 @@ export const TodayForecast = ({ data, weatherIcons }: any) => {
     console.log(data);
     return (
         <div className="grid grid-cols-2 grid-rows-3 justify-items-center items-center h-full w-1/4">
-            <p className="col-span-2 py-3 text-slate-200 text-2xl self-start">
-                Today
-            </p>
+            <p className="col-span-2 py-3 text-2xl self-start">Today</p>
 
             <Image
                 src={weatherIcons[data.weather.icon]}
@@ -19,11 +17,11 @@ export const TodayForecast = ({ data, weatherIcons }: any) => {
                 {data.weather.description}
             </p>
             <div className="pr-4 row-start-2 pt-5">
-                <p className="py-3 text-slate-200 text-5xl">{data.temp} °C</p>
+                <p className="py-3 text-5xl">{data.temp} °C</p>
 
-                <p className="py-3 text-slate-200">Humidity: {data.rh}%</p>
-                <p className="py-3 text-slate-200">Wind speed:</p>
-                <p className="py-3 text-slate-200">{data.wind_spd} km/h</p>
+                <p className="py-3">Humidity: {data.rh}%</p>
+                <p className="py-3">Wind speed:</p>
+                <p className="py-3">{data.wind_spd} km/h</p>
             </div>
         </div>
     );
