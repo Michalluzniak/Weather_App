@@ -1,9 +1,9 @@
 const CityNameBox = () => {
     return (
-        <div>
-            <h2>TODAY’S WEATHER IN: </h2>
-            <h3>United States</h3>
-            <h5>New York</h5>
+        <div className="text-right">
+            <h1 className="text-3xl">TODAY’S WEATHER IN</h1>
+            <h3 className="text-4xl">United States</h3>
+            <h2 className="text-3xl">New York</h2>
         </div>
     );
 };
