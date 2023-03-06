@@ -18,18 +18,19 @@ export default function Home(data: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const weatherData = await getWeahterForecast(
-        process.env.WEATHER_FORECAST_API_KEY,
-        "New York"
-    );
+    // const weatherData = await getWeahterForecast(
+    //     process.env.WEATHER_FORECAST_API_KEY,
+    //     "New York"
+    // );
 
     const weatherIconsApiCall = await getWeatherIcons();
     const weatherIcons = weatherIconsApiCall.data;
 
     const cityNameToCoordinates = await forwardGeocoding(
         process.env.FORWARD_GEOCODING_API_KEY,
-        "New York"
+        "new york"
     );
+    console.log(cityNameToCoordinates);
 
     const timezone = await getTimezone(
         cityNameToCoordinates[0].lat,
