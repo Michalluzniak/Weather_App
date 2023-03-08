@@ -1,9 +1,12 @@
 // import { getWeahterForecast } from "@/api/getWeatherForecast";
+import getBackgroundImage from "@/api/backgroundImage/getBackgroundImage";
 import { getWeahterForecast } from "@/api/getWeatherForecast";
 import { getWeatherIcons } from "@/api/getWeatherIcons";
+import getTimezone from "@/api/timezone";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { GetServerSideProps } from "next";
 import dataMock from "../../mocks/weatherApiMock.json";
+import { forwardGeocoding } from "../../services/forwardGeocoding";
 
 interface ApiDataProps {
     weatherData: { [key: string]: string };
@@ -11,21 +14,45 @@ interface ApiDataProps {
 }
 
 export default function Home(data: any) {
+    console.log(data.backgroundImage);
     return <>{<MainLayout data={data} />}</>;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+<<<<<<< HEAD
     // const data = await getWeahterForecast(
     //     process.env.WEATHER_FORECAST_API_KEY,
     //     "Copenhagen"
     // );
+=======
+    const cityNameQuery = context.query.city as string;
+
+    // const weatherData = await getWeahterForecast(
+    //     process.env.WEATHER_FORECAST_API_KEY,
+    //     cityNameQuery
+    // );
+    const backgroundImage = await getBackgroundImage(cityNameQuery);
+
+>>>>>>> develop
     const weatherIconsApiCall = await getWeatherIcons();
     const weatherIcons = weatherIconsApiCall.data;
+
+    const cityNameToCoordinates = await forwardGeocoding(
+        process.env.FORWARD_GEOCODING_API_KEY,
+        cityNameQuery
+    );
+
+    const timezone = await getTimezone(
+        cityNameToCoordinates[0].lat,
+        cityNameToCoordinates[0].lon
+    );
 
     return {
         props: {
             data: dataMock.data,
-            weatherIcons
+            weatherIcons,
+            timezone,
+            backgroundImage
         }
     };
 };
