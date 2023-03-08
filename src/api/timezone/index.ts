@@ -1,13 +1,10 @@
 import { apiCall } from "../apiCallHandler";
 
-const getTimezone = (lat: string, lon: string) => {
-    return apiCall("GET", "http://api.timezonedb.com/v2.1/get-time-zone", {
+const getTimezone = (apiKey: string, cityName: string) => {
+    return apiCall("GET", "https://api.geoapify.com/v1/geocode/search", {
         params: {
-            key: "O3N19C1A36UB",
-            format: "json",
-            by: "position",
-            lng: lon,
-            lat: lat
+            apiKey: "d4559eb66d884dfaa33c9171c5c290af",
+            city: cityName
         }
     });
 };

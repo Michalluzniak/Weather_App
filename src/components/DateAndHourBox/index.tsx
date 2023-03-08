@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import useCityLocalTime from "./hooks/useCityLocalTime";
 
 const DateAndHourBox = ({ data }: any) => {
+    const cityTimeOffset =
+        data.features[0].properties.timezone.offset_STD_seconds;
+
     const [localCityTime, setLocalTime] = useCityLocalTime();
 
-    setLocalTime(data.zoneName, "en-GB");
+    setLocalTime(cityTimeOffset, "en-US");
 
     return (
         <div className="w-1/5">
