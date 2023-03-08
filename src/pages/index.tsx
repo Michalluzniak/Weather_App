@@ -19,18 +19,20 @@ export default function Home(data: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+    const cityNameQuery = context.query.city as string;
+
     // const weatherData = await getWeahterForecast(
     //     process.env.WEATHER_FORECAST_API_KEY,
-    //     "New York"
+    //     cityNameQuery
     // );
-    const backgroundImage = await getBackgroundImage("new york");
+    const backgroundImage = await getBackgroundImage(cityNameQuery);
 
     const weatherIconsApiCall = await getWeatherIcons();
     const weatherIcons = weatherIconsApiCall.data;
 
     const cityNameToCoordinates = await forwardGeocoding(
         process.env.FORWARD_GEOCODING_API_KEY,
-        "new york"
+        cityNameQuery
     );
 
     const timezone = await getTimezone(
