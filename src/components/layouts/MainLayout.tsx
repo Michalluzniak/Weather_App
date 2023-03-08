@@ -8,7 +8,7 @@ export const MainLayout = ({ data }: any) => {
         <main
             className="flex flex-col justify-between items-center h-screen w-full bg-cover bg-no-repeat bg-center text-slate-200"
             style={{
-                backgroundImage: `url(${data.backgroundImage.results[1].urls.regular})`
+                backgroundImage: `url(${data.backgroundImage.results[0].urls.full})`
             }}
         >
             <div className="flex justify-between h-1/4 w-full mt-20 px-10">
