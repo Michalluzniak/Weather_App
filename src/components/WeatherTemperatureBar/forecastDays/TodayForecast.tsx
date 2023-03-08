@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export const TodayForecast = ({ data, weatherIcons }: any) => {
-    console.log(data);
+    // console.log(data);
     return (
         <div className="grid grid-cols-2 grid-rows-3 justify-items-center items-center h-full w-1/4">
             <p className="col-span-2 py-3 text-2xl self-start">Today</p>
