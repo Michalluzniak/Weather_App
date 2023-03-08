@@ -15,10 +15,10 @@ export default function Home(data: any) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const data = await getWeahterForecast(
-        process.env.WEATHER_FORECAST_API_KEY,
-        "Copenhagen"
-    );
+    // const data = await getWeahterForecast(
+    //     process.env.WEATHER_FORECAST_API_KEY,
+    //     "Copenhagen"
+    // );
     const weatherIconsApiCall = await getWeatherIcons();
     const weatherIcons = weatherIconsApiCall.data;
 

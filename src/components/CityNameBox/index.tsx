@@ -1,4 +1,5 @@
-const CityNameBox = () => {
+const CityNameBox = ({ data }: any) => {
+    console.log(data);
     return (
         <div>
             <h2>TODAY’S WEATHER IN: </h2>
