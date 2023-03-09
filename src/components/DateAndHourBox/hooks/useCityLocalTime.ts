@@ -8,22 +8,6 @@ const useCityLocalTime = () => {
     const setLocalTime = (timeZone: string, timeLocale: CityTimeLocale) => {
         //
         const updateLocalTime = () => {
-<<<<<<< Updated upstream
-            let time = new Date().toLocaleTimeString(timeLocale, {
-                timeZone
-            });
-
-            // Get hours and minutes in variables
-            const hours = time.split(":")[0];
-            const minutes = time.split(":")[1];
-
-            //Check time format and add am/pm if necessary
-            timeLocale === "en-US"
-                ? setlocalCityTime(
-                      `${hours}:${minutes} ${time.slice(time.length - 2)}`
-                  )
-                : setlocalCityTime(`${hours}:${minutes}`);
-=======
             let targetTime = new Date();
             const clientLocationOffset = new Date().getTimezoneOffset();
             let cityOffsetTime = new Date(
@@ -45,7 +29,6 @@ const useCityLocalTime = () => {
             //           )}`
             //       )
             //     : setlocalCityTime(`${hours}:${minutes}`);
->>>>>>> Stashed changes
         };
 
         var date = new Date();

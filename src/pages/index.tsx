@@ -17,12 +17,7 @@ interface ApiDataProps {
 }
 
 export default function Home(data: any) {
-<<<<<<< Updated upstream
-    console.log(data.backgroundImage);
-    return <>{<MainLayout data={data} />}</>;
-=======
     return <MainLayout data={data} />;
->>>>>>> Stashed changes
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
