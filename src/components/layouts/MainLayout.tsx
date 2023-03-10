@@ -14,7 +14,7 @@ export const MainLayout = ({ data }: any) => {
             <div className="flex justify-between h-1/4 w-full mt-20 px-10">
                 <DateAndHourBox data={data.timezone} />
                 <Searchbar />
-                <CityNameBox />
+                <CityNameBox data={data.timezone} />
             </div>
             <WeatherTemperatureBar data={data} className={"h-1/3 w-full"} />
         </main>
