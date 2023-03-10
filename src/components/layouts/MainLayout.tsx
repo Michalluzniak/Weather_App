@@ -6,9 +6,14 @@ import WeatherTemperatureBar from "../WeatherTemperatureBar";
 export const MainLayout = ({ data }: any) => {
     return (
         <main
-            className="flex flex-col justify-between items-center h-screen w-full bg-cover bg-no-repeat bg-center text-slate-200"
+            className="flex flex-col justify-between items-center h-screen w-full bg-cover bg-no-repeat bg-center text-white"
             style={{
+<<<<<<< HEAD
                 backgroundImage: `url(${data.backgroundImage.results[0].urls.full})`
+=======
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)), url(${data.backgroundImage.results[3].urls.full})`,
+                filter: "brightness(90%)"
+>>>>>>> feature/city_name_box
             }}
         >
             <div className="flex justify-between h-1/4 w-full mt-20 px-10">

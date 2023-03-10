@@ -16,6 +16,10 @@ interface ApiDataProps {
 }
 
 export default function Home(data: any) {
+<<<<<<< HEAD
+=======
+    console.log(data.timezone);
+>>>>>>> feature/city_name_box
     return <MainLayout data={data} />;
 }
 
@@ -26,7 +30,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     //     process.env.WEATHER_FORECAST_API_KEY,
     //     cityNameQuery
     // );
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/city_name_box
     const backgroundImage = await getBackgroundImage(
         process.env.UNSLPASH_IMAGES_API_KEY,
         cityNameQuery
@@ -35,7 +42,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const weatherIconsApiCall = await getWeatherIcons();
     const weatherIcons = weatherIconsApiCall.data;
 
+<<<<<<< HEAD
     const timezone = await forwardGeocoding(
+=======
+    const timezone = await getTimezone(
+>>>>>>> feature/city_name_box
         process.env.TIMEZONE_API_KEY,
         cityNameQuery
     );
