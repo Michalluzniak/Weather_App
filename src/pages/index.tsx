@@ -2,7 +2,6 @@
 import getBackgroundImage from "@/api/backgroundImage/getBackgroundImage";
 import { getWeahterForecast } from "@/api/getWeatherForecast";
 import { getWeatherIcons } from "@/api/getWeatherIcons";
-import forwardGeocoding from "@/api/timezoneAndGeocoding/forwardGeocoding";
 import reverseGeocoding from "@/api/timezoneAndGeocoding/reverseGeocoding";
 import { MainLayout } from "@/components/layouts/MainLayout";
 
@@ -16,47 +15,45 @@ interface ApiDataProps {
 }
 
 export default function Home(data: any) {
-<<<<<<< HEAD
-=======
-    console.log(data.timezone);
->>>>>>> feature/city_name_box
+    console.log(data);
     return <MainLayout data={data} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const cityNameQuery = context.query.city as string;
 
-    // const weatherData = await getWeahterForecast(
-    //     process.env.WEATHER_FORECAST_API_KEY,
-    //     cityNameQuery
-    // );
-<<<<<<< HEAD
-
-=======
->>>>>>> feature/city_name_box
-    const backgroundImage = await getBackgroundImage(
-        process.env.UNSLPASH_IMAGES_API_KEY,
+    const weatherData = await getWeahterForecast(
+        process.env.WEATHER_FORECAST_API_KEY,
         cityNameQuery
     );
+
+    const lat = weatherData.lat;
+    const lon = weatherData.lon;
 
     const weatherIconsApiCall = await getWeatherIcons();
     const weatherIcons = weatherIconsApiCall.data;
 
-<<<<<<< HEAD
-    const timezone = await forwardGeocoding(
-=======
-    const timezone = await getTimezone(
->>>>>>> feature/city_name_box
-        process.env.TIMEZONE_API_KEY,
-        cityNameQuery
+    const timezone: any = await reverseGeocoding(
+        process.env.REVERSE_GEOCODING_API_KEY,
+        lat,
+        lon
+    );
+
+    const cityNameFromTimezoneApi = timezone.features[0].properties.city;
+
+    console.log(cityNameFromTimezoneApi);
+
+    const backgroundImage = await getBackgroundImage(
+        process.env.UNSLPASH_IMAGES_API_KEY,
+        cityNameFromTimezoneApi
     );
 
     return {
         props: {
-            data: dataMock.data,
+            weatherData,
+            backgroundImage,
             weatherIcons,
-            timezone,
-            backgroundImage
+            timezone
         }
     };
 };

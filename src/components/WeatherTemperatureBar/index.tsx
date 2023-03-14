@@ -6,7 +6,7 @@ const WeatherTemperatureBar = ({ data, className }: any) => (
     <div
         className={`flex flex-row uppercase bg-black/70 backdrop-blur-sm	 ${className}`}
     >
-        {data.data.data.map((weatherData: any, index: number) => {
+        {data.weatherData.data.map((weatherData: any, index: number) => {
             return index === 0 ? (
                 <TodayForecast
                     key={index}
