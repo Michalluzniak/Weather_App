@@ -1,4 +1,5 @@
 // import { getWeahterForecast } from "@/api/getWeatherForecast";
+import { getCitiesList } from "@/api/apiCitiesList";
 import getBackgroundImage from "@/api/backgroundImage/getBackgroundImage";
 import { getWeahterForecast } from "@/api/getWeatherForecast";
 import { getWeatherIcons } from "@/api/getWeatherIcons";
@@ -22,13 +23,16 @@ export default function Home(data: any) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const cityNameQuery = context.query.city as string;
 
-    const weatherData = await getWeahterForecast(
-        process.env.WEATHER_FORECAST_API_KEY,
-        cityNameQuery
-    );
+    const weatherData = dataMock.data;
+    // await getWeahterForecast(
+    //     process.env.WEATHER_FORECAST_API_KEY,
+    //     cityNameQuery
+    // );
 
     const lat = weatherData.lat;
+    // const lat = dataMock.data.lat;
     const lon = weatherData.lon;
+    // const lon = dataMock.data.lon;
 
     const weatherIconsApiCall = await getWeatherIcons();
     const weatherIcons = weatherIconsApiCall.data;
@@ -41,19 +45,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const cityNameFromTimezoneApi = timezone.features[0].properties.city;
 
-    console.log(cityNameFromTimezoneApi);
-
     const backgroundImage = await getBackgroundImage(
         process.env.UNSLPASH_IMAGES_API_KEY,
         cityNameFromTimezoneApi
     );
+
+    const citiesList = await getCitiesList();
 
     return {
         props: {
             weatherData,
             backgroundImage,
             weatherIcons,
-            timezone
+            timezone,
+            citiesList
         }
     };
 };

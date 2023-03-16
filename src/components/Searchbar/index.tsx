@@ -1,16 +1,34 @@
 import { useState } from "react";
-import { BiSearch } from "react-icons/bi";
 import { useRouter } from "next/router";
+import SearchList from "./SearchList";
+import Form from "./Form";
+import { useCitiesList } from "./hooks/useCitiesList";
 
 const Searchbar = () => {
+    const router = useRouter();
+
     const [inputValue, setInputValue] = useState<string>("");
 
-    const router = useRouter();
+    const [
+        citiesList,
+        setFilterValue,
+        cursorIndexOnTheList,
+        setIndexOnTheList
+    ] = useCitiesList();
+
+    setFilterValue(inputValue);
+
+    // const matchArray = citiesListFilter(inputValue, data);
 
     const inputOnChangeHanlder = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
         setInputValue(event.target.value);
+    };
+
+    const submitResultFromTheList = (elementValue: string) => {
+        router.push(`?city=${elementValue.split(",")[0]}`);
+        setInputValue("");
     };
 
     const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -20,18 +38,21 @@ const Searchbar = () => {
     };
 
     return (
-        <form onSubmit={onSubmitHandler} className="flex justify-around w-1/3">
-            <input
-                type="text"
-                className="bg-black/70 rounded-full w-10/12 h-10 outline-none px-4 placeholder:text-slate-300"
-                placeholder="Search for city"
-                value={inputValue}
-                onChange={inputOnChangeHanlder}
+        <div className="w-1/3">
+            <Form
+                onSubmitHandler={onSubmitHandler}
+                inputValue={inputValue}
+                inputOnChangeHanlder={inputOnChangeHanlder}
+                setIndexOnTheList={setIndexOnTheList}
+                submitResultFromTheList={submitResultFromTheList}
             />
-            <button className="bg-black/70 h-10 w-10 rounded-full grid place-items-center ">
-                <BiSearch className="text-slate-200 text-xl" />
-            </button>
-        </form>
+            <SearchList
+                inputValue={inputValue}
+                citiesList={citiesList}
+                submitResultFromTheList={submitResultFromTheList}
+                cursorIndexOnTheList={cursorIndexOnTheList}
+            />
+        </div>
     );
 };
 

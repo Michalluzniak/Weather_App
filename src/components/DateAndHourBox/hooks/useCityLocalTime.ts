@@ -44,8 +44,6 @@ const useCityLocalTime = () => {
             );
         };
 
-        console.log(getCurrentMonth());
-
         useEffect(() => {
             setLocalCityDate(
                 `${clientDate.split("/")[0]} ${
