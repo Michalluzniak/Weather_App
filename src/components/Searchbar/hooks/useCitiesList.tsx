@@ -1,6 +1,6 @@
 import { apiCall } from "@/api/apiCallHandler";
 import { citiesListFilter } from "@/services/citiesListFilter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useCitiesList = () => {
     //

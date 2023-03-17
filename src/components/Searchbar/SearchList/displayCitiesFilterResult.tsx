@@ -1,66 +1,79 @@
-import { citiesListFilter } from "../../../services/citiesListFilter";
 import reactStringReplace from "react-string-replace";
 import { useState } from "react";
 
 export const displaySearchMatches = (
     inputValue: string,
-    matchArray: any,
+    citiesList: any,
     submitValue: any,
-    cursor: any
+    cursor: any,
+    setCursorIndexOnTheList: any
 ) => {
     //
-    // const [isHovered, setIsHovered] = useState<boolean>(false);
+    const [isHovered, setIsHovered] = useState<boolean>(false);
 
-    return matchArray.map((place: any, index: any) => {
-        //
-        const cityName = reactStringReplace(
-            place.name,
-            inputValue,
-            (match: string, i: any) => {
-                return (
-                    <span key={i} className="bg-orange-400">
-                        {match}
-                    </span>
-                );
-            }
-        );
+    const setCursorIndexOnHover = (index: number) => {
+        // setCursorIndexOnTheList(index);
+    };
 
-        const countryName = reactStringReplace(
-            place.country,
-            inputValue,
-            (match: string, i: any) => {
-                return (
-                    <span key={i} className="bg-orange-400">
-                        {match}
-                    </span>
-                );
-            }
-        );
+    return (
+        citiesList &&
+        citiesList.map((place: any, index: any) => {
+            //
+            const cityName = reactStringReplace(
+                place.name,
+                inputValue,
+                (match: string, i: any) => {
+                    return (
+                        <span key={i} className="bg-orange-400">
+                            {match}
+                        </span>
+                    );
+                }
+            );
 
-        const maxListLength = 7;
+            const countryName = reactStringReplace(
+                place.country,
+                inputValue,
+                (match: string, i: any) => {
+                    return (
+                        <span key={i} className="bg-orange-400">
+                            {match}
+                        </span>
+                    );
+                }
+            );
 
-        return (
-            index <= maxListLength && (
-                <li
-                    key={index}
-                    className={`${
-                        index + 1 === matchArray.length ||
-                        (index !== maxListLength && "border-b border-white/40")
-                    } py-3 cursor-pointer hover:bg-white hover:text-black ${
-                        cursor === index && "bg-white text-black"
-                    }`}
-                    onClick={(event: any) => {
-                        event.stopPropagation();
-                        submitValue(event.target.innerText);
-                    }}
-                    // onMouseEnter={() => setIsHovered((prev) => !prev)}
-                    // onMouseLeave={() => setIsHovered((prev) => !prev)}
-                >
-                    <span>
-                        {cityName}, {countryName}
-                    </span>
-                </li>
-            )
-        );
-    });
+            const maxListLength = 7;
+
+            return (
+                index <= maxListLength && (
+                    <li
+                        key={index}
+                        className={`${
+                            index + 1 === citiesList.length ||
+                            (index !== maxListLength &&
+                                "border-b border-white/40")
+                        } py-3 cursor-pointer hover:bg-white hover:text-black ${
+                            cursor === index &&
+                            !isHovered &&
+                            "bg-white text-black"
+                        }`}
+                        onClick={(event: any) => {
+                            event.stopPropagation();
+                            submitValue(event.target.innerText);
+                        }}
+                        onMouseEnter={() => {
+                            setCursorIndexOnHover(index);
+                            setIsHovered((prev) => !prev);
+                        }}
+                        onMouseLeave={() => setIsHovered((prev) => !prev)}
+                    >
+                        <span>
+                            {cityName}, {countryName}
+                        </span>
+                    </li>
+                )
+            );
+        })
+    );
 };

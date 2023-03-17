@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import SearchList from "./SearchList";
 import Form from "./Form";
@@ -16,9 +16,10 @@ const Searchbar = () => {
         setIndexOnTheList
     ] = useCitiesList();
 
-    setFilterValue(inputValue);
-
-    // const matchArray = citiesListFilter(inputValue, data);
+    useEffect(() => {
+        setFilterValue(inputValue);
+        console.log(cursorIndexOnTheList);
+    }, [inputValue]);
 
     const inputOnChangeHanlder = (
         event: React.ChangeEvent<HTMLInputElement>
@@ -51,6 +52,7 @@ const Searchbar = () => {
                 citiesList={citiesList}
                 submitResultFromTheList={submitResultFromTheList}
                 cursorIndexOnTheList={cursorIndexOnTheList}
+                setIndexOnTheList={setIndexOnTheList}
             />
         </div>
     );
