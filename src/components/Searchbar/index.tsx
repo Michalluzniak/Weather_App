@@ -13,12 +13,12 @@ const Searchbar = () => {
         citiesList,
         setFilterValue,
         cursorIndexOnTheList,
-        setIndexOnTheList
+        setIndexOnTheList,
+        setIndexOnTheListByMouse
     ] = useCitiesList();
 
     useEffect(() => {
         setFilterValue(inputValue);
-        console.log(cursorIndexOnTheList);
     }, [inputValue]);
 
     const inputOnChangeHanlder = (
@@ -52,7 +52,7 @@ const Searchbar = () => {
                 citiesList={citiesList}
                 submitResultFromTheList={submitResultFromTheList}
                 cursorIndexOnTheList={cursorIndexOnTheList}
-                setIndexOnTheList={setIndexOnTheList}
+                setIndexOnTheListByMouse={setIndexOnTheListByMouse}
             />
         </div>
     );

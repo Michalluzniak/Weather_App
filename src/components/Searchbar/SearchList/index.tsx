@@ -3,23 +3,23 @@ import { displaySearchMatches } from "./displayCitiesFilterResult";
 const SearchList = ({
     inputValue,
     citiesList,
-    submitResult,
+    submitResultFromTheList,
     cursorIndexOnTheList,
-    setIndexOnTheList
+    setIndexOnTheListByMouse
 }: any) => {
     return (
         <div
-            className={`citiesList w-10/12 ml-2 min-h-96 mt-4 bg-black rounded-2xl bg-black/70 ${
+            className={`flex justify-center w-full mt-4 ${
                 inputValue === "" && "hidden"
             } `}
         >
-            <ul className="w-full p-3 text-lg">
+            <ul className="w-10/12 p-3 text-lg rounded-2xl bg-black/70">
                 {displaySearchMatches(
                     inputValue,
                     citiesList,
-                    submitResult,
+                    submitResultFromTheList,
                     cursorIndexOnTheList,
-                    setIndexOnTheList
+                    setIndexOnTheListByMouse
                 )}
             </ul>
         </div>

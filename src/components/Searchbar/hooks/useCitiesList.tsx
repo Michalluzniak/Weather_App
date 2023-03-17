@@ -1,6 +1,6 @@
 import { apiCall } from "@/api/apiCallHandler";
 import { citiesListFilter } from "@/services/citiesListFilter";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const useCitiesList = () => {
     //
@@ -9,6 +9,10 @@ export const useCitiesList = () => {
         useState<number>(-1);
 
     const MAX_LIST_LENGTH = 7;
+
+    const setIndexOnTheListByMouse = (index: number) => {
+        setCursorIndexOnTheList(index);
+    };
 
     const setFilterValue = async (inputValue: string) => {
         const response: any = await apiCall(
@@ -49,6 +53,7 @@ export const useCitiesList = () => {
         citiesList,
         setFilterValue,
         cursorIndexOnTheList,
-        setIndexOnTheList
+        setIndexOnTheList,
+        setIndexOnTheListByMouse
     ];
 };

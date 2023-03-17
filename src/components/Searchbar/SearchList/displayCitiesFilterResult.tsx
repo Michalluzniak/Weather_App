@@ -4,15 +4,15 @@ import { useState } from "react";
 export const displaySearchMatches = (
     inputValue: string,
     citiesList: any,
-    submitValue: any,
+    submitResultFromTheList: any,
     cursor: any,
-    setCursorIndexOnTheList: any
+    setIndexOnTheListByMouse: any
 ) => {
     //
     const [isHovered, setIsHovered] = useState<boolean>(false);
 
     const setCursorIndexOnHover = (index: number) => {
-        // setCursorIndexOnTheList(index);
+        setIndexOnTheListByMouse(index);
     };
 
     return (
@@ -59,8 +59,8 @@ export const displaySearchMatches = (
                             "bg-white text-black"
                         }`}
                         onClick={(event: any) => {
-                            event.stopPropagation();
-                            submitValue(event.target.innerText);
+                            // event.stopPropagation();
+                            submitResultFromTheList(event.target.innerText);
                         }}
                         onMouseEnter={() => {
                             setCursorIndexOnHover(index);
