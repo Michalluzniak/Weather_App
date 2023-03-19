@@ -5,6 +5,7 @@ import { getWeahterForecast } from "@/api/getWeatherForecast";
 import { getWeatherIcons } from "@/api/getWeatherIcons";
 import reverseGeocoding from "@/api/timezoneAndGeocoding/reverseGeocoding";
 import { MainLayout } from "@/components/layouts/MainLayout";
+import { useRouter } from "next/router";
 
 import { GetServerSideProps } from "next";
 
@@ -16,12 +17,15 @@ interface ApiDataProps {
 }
 
 export default function Home(data: any) {
-    console.log(data);
+    const router = useRouter();
+
     return <MainLayout data={data} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const cityNameQuery = context.query.city as string;
+
+    console.log(context.resolvedUrl);
 
     const weatherData = dataMock.data;
     // await getWeahterForecast(
@@ -51,6 +55,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     );
 
     const citiesList = await getCitiesList();
+
+    if (cityNameQuery === "") {
+        return {
+            redirect: {
+                destination: "/",
+                permanent: false
+            }
+        };
+    }
 
     return {
         props: {
