@@ -28,16 +28,20 @@ const Searchbar = ({ imageLoadingStateHandler }: any) => {
     };
 
     const submitResultFromTheList = (elementValue: string) => {
-        imageLoadingStateHandler();
-        router.push(`?city=${elementValue.split(",")[0]}`);
-        setInputValue("");
+        if (citiesList.length !== 0) {
+            imageLoadingStateHandler();
+            router.push(`?city=${elementValue.split(",")[0]}`);
+            setInputValue("");
+        }
     };
 
     const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
-        imageLoadingStateHandler();
         event.preventDefault();
-        router.push(`?city=${inputValue}`);
-        setInputValue("");
+        if (citiesList.length !== 0) {
+            imageLoadingStateHandler();
+            router.push(`?city=${inputValue}`);
+            setInputValue("");
+        }
     };
 
     return (

@@ -66,8 +66,10 @@ export const displaySearchMatches = (
                             "bg-white text-black"
                         }`}
                             onClick={(event: any) => {
-                                // event.stopPropagation();
-                                submitResultFromTheList(event.target.innerText);
+                                citiesList.length !== 0 &&
+                                    submitResultFromTheList(
+                                        event.target.innerText
+                                    );
                             }}
                             onMouseEnter={() => {
                                 setCursorIndexOnHover(index);
