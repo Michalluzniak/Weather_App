@@ -10,7 +10,7 @@ const DateAndHourBox = ({ data }: any) => {
     );
 
     return (
-        <div className="w-1/4">
+        <div className="w-1/4 z-10">
             <p className="text-6xl">{localCityTime}</p>
             <p className="text-xl pl-2 pt-1">{localCityDate}</p>
         </div>

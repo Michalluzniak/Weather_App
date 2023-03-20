@@ -4,7 +4,7 @@ const CityNameBox = ({ data }: any) => {
     const country = data.features[0].properties.country;
 
     return (
-        <div className="text-right w-1/4 uppercase">
+        <div className="text-right w-1/4 uppercase z-10">
             <h1 className="text-3xl">Today's weather in</h1>
 
             <h3 className="text-4xl">{city}</h3>
