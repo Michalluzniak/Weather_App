@@ -1,5 +1,6 @@
 import reactStringReplace from "react-string-replace";
 import { useState } from "react";
+import { Error } from "./error";
 
 export const displaySearchMatches = (
     inputValue: string,
@@ -15,65 +16,71 @@ export const displaySearchMatches = (
         setIndexOnTheListByMouse(index);
     };
 
-    return (
-        citiesList &&
-        citiesList.map((place: any, index: any) => {
-            //
-            const cityName = reactStringReplace(
-                place.name,
-                inputValue,
-                (match: string, i: any) => {
-                    return (
-                        <span key={i} className="bg-orange-400">
-                            {match}
-                        </span>
-                    );
-                }
-            );
+    if (citiesList)
+        return citiesList.length === 0 ? (
+            <Error />
+        ) : (
+            citiesList.map((place: any, index: any) => {
+                //
+                const cityName = reactStringReplace(
+                    place.name,
+                    inputValue,
+                    (match: string, i: any) => {
+                        return (
+                            <span key={i} className="bg-orange-400">
+                                {match}
+                            </span>
+                        );
+                    }
+                );
 
-            const countryName = reactStringReplace(
-                place.country,
-                inputValue,
-                (match: string, i: any) => {
-                    return (
-                        <span key={i} className="bg-orange-400">
-                            {match}
-                        </span>
-                    );
-                }
-            );
+                const countryName = reactStringReplace(
+                    place.country,
+                    inputValue,
+                    (match: string, i: any) => {
+                        return (
+                            <span key={i} className="bg-orange-400">
+                                {match}
+                            </span>
+                        );
+                    }
+                );
 
-            const maxListLength = 7;
+                const maxListLength = 7;
 
-            return (
-                index <= maxListLength && (
-                    <li
-                        key={index}
-                        className={`${
-                            index + 1 === citiesList.length ||
-                            (index !== maxListLength &&
-                                "border-b border-white/40")
-                        } py-3 cursor-pointer hover:bg-white hover:text-black ${
+                return (
+                    index <= maxListLength && (
+                        <li
+                            key={index}
+                            className={`${
+                                index === citiesList.length ||
+                                (index !== maxListLength &&
+                                    "border-b border-white/40")
+                            } p-3 cursor-pointer ${
+                                index === 0 && "rounded-t-2xl"
+                            }
+                        ${index === citiesList.length - 1 && "rounded-b-2xl"}
+                        hover:bg-white hover:text-black ${
                             cursor === index &&
                             !isHovered &&
                             "bg-white text-black"
                         }`}
-                        onClick={(event: any) => {
-                            // event.stopPropagation();
-                            submitResultFromTheList(event.target.innerText);
-                        }}
-                        onMouseEnter={() => {
-                            setCursorIndexOnHover(index);
-                            setIsHovered((prev) => !prev);
-                        }}
-                        onMouseLeave={() => setIsHovered((prev) => !prev)}
-                    >
-                        <span>
-                            {cityName}, {countryName}
-                        </span>
-                    </li>
-                )
-            );
-        })
-    );
+                            onClick={(event: any) => {
+                                // event.stopPropagation();
+                                submitResultFromTheList(event.target.innerText);
+                            }}
+                            onMouseEnter={() => {
+                                setCursorIndexOnHover(index);
+                                setIsHovered((prev) => !prev);
+                            }}
+                            onMouseLeave={() => setIsHovered((prev) => !prev)}
+                        >
+                            <span>
+                                {cityName}, {countryName}
+                            </span>
+                        </li>
+                    )
+                );
+            })
+        );
 };

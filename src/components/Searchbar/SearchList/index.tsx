@@ -13,7 +13,7 @@ const SearchList = ({
                 inputValue === "" && "hidden"
             } `}
         >
-            <ul className="w-10/12 p-3 text-lg rounded-2xl bg-black/70">
+            <ul className="w-10/12  text-lg rounded-2xl bg-black/70">
                 {displaySearchMatches(
                     inputValue,
                     citiesList,

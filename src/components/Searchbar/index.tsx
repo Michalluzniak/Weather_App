@@ -41,7 +41,7 @@ const Searchbar = ({ imageLoadingStateHandler }: any) => {
     };
 
     return (
-        <div className="w-1/3">
+        <div className="w-1/3 z-10">
             <Form
                 onSubmitHandler={onSubmitHandler}
                 inputValue={inputValue}
