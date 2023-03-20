@@ -1,6 +1,6 @@
 import reactStringReplace from "react-string-replace";
 import { useState } from "react";
-import { Error } from "./error";
+import { Error } from "./Error";
 
 export const displaySearchMatches = (
     inputValue: string,
